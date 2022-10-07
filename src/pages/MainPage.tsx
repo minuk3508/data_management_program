@@ -1,5 +1,5 @@
-function MainPage() {
-  return <div>Main</div>;
-}
+import { Template } from "Template/Template";
 
-export default MainPage;
+export function MainPage() {
+  return <Template>Main Here</Template>;
+}

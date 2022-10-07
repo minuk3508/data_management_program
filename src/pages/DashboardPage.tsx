@@ -1,5 +1,5 @@
-function DashboardPage() {
-  return <div>Dashboard</div>;
-}
+import { Template } from "Template/Template";
 
-export default DashboardPage;
+export function DashboardPage() {
+  return <Template>Dashboard</Template>;
+}
