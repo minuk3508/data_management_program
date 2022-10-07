@@ -3,7 +3,7 @@ import { DayPicker } from "react-day-picker";
 import "react-day-picker/dist/style.css";
 import styled from "styled-components";
 
-export function Calender() {
+export default function Calender() {
   const today = new Date();
   const [selectedDay, setSelectedDay] = useState<Date | undefined>(today);
 
