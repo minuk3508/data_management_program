@@ -1,10 +1,10 @@
 import Chart from "chart.js/auto";
 import { Line } from "react-chartjs-2";
 import { CategoryScale } from "chart.js";
-import * as Zoom from "chartjs-plugin-zoom";
+import zoomPlugin from "chartjs-plugin-zoom";
 import styled from "styled-components";
 Chart.register(CategoryScale);
-
+Chart.register(zoomPlugin);
 interface channelProps {
   id: number;
   name: string;
@@ -32,11 +32,11 @@ interface dataProps {
 
 export default function HumidityGraph({ channelInfo, feedData }: dataProps) {
   const data = {
-    labels: feedData?.map((i) => i.created_at),
+    labels: ["1", "2", "3", "4", "5", "6", "7"],
     datasets: [
       {
-        label: channelInfo?.name,
-        data: feedData?.map((i) => i.field2),
+        label: "온도",
+        data: [10, 20, 30, 10, 11, 18],
         fill: true,
         borderColor: "rgb(75, 192, 192)",
         tension: 0.5,
@@ -44,21 +44,7 @@ export default function HumidityGraph({ channelInfo, feedData }: dataProps) {
       },
     ],
   };
-  const options = {
-    plugins: {
-      zoom: {
-        pan: {
-          enabled: true,
-          mode: "x",
-        },
-        zoom: {
-          enabled: true,
-          drag: true,
-          mode: "xy",
-        },
-      },
-    },
-  };
+
   console.log(channelInfo);
   console.log(feedData);
   return (
@@ -73,7 +59,6 @@ export default function HumidityGraph({ channelInfo, feedData }: dataProps) {
               zoom: {
                 mode: "x",
                 wheel: { enabled: true },
-                pinch: { enabled: true },
               },
             },
           },

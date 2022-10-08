@@ -2,9 +2,11 @@ import Chart from "chart.js/auto";
 import { Line } from "react-chartjs-2";
 import { CategoryScale } from "chart.js";
 import styled from "styled-components";
+import * as Zoom from "chartjs-plugin-zoom";
 import useFetchWeatherData from "hooks/useFetchWeatherData";
 import moment from "moment";
 import { useMemo } from "react";
+import { CSVLink } from "react-csv";
 Chart.register(CategoryScale);
 
 function PressureGraph() {
@@ -42,17 +44,63 @@ function PressureGraph() {
       },
     ],
   };
-
+  const CSVheaders: Object[] = [
+    ["기온 데이터"],
+    ["Created at", "Value"],
+    [1, 3],
+    [1, 3],
+    [1, 3],
+    [1, 3],
+    ["습도 데이터"],
+    ["Created at", "Value"],
+    ["기압 데이터"],
+    ["Created at", "Value"],
+  ];
+  const CSVdata = [
+    { created_at: "Ahmed", value: "30" },
+    { created_at: "Raed", value: "50" },
+    { created_at: "Yezzi", value: "60" },
+  ];
   return (
-    <Div>
+    <Wrapper>
+      <CSVLink data={CSVheaders} filename={"기압 데이터"}>
+        Download
+      </CSVLink>
       <h1>Chart Test</h1>
-      <Line data={data} />
-    </Div>
+      <Line
+        data={data}
+        options={{
+          responsive: true,
+          plugins: {
+            zoom: {
+              pan: { enabled: true, mode: "x" },
+              zoom: {
+                mode: "x",
+                wheel: { enabled: true },
+              },
+            },
+          },
+          scales: {
+            xAxes: { grid: { color: "rgba(0, 0, 0, 0)" } },
+            yAxes: {
+              ticks: {
+                maxTicksLimit: 5,
+                crossAlign: "center",
+              },
+            },
+          },
+        }}
+      />
+    </Wrapper>
   );
 }
-const Div = styled.div`
-  width: 80rem;
-  height: 25rem;
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
 `;
 
 export default PressureGraph;

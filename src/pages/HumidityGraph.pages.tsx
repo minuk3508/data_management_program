@@ -1,6 +1,7 @@
 import Chart from "chart.js/auto";
 import { Line } from "react-chartjs-2";
 import { CategoryScale } from "chart.js";
+import * as Zoom from "chartjs-plugin-zoom";
 import styled from "styled-components";
 import useFetchWeatherData from "hooks/useFetchWeatherData";
 import moment from "moment";
@@ -44,15 +45,41 @@ function HumidityGraph() {
   };
 
   return (
-    <Div>
+    <Wrapper>
       <h1>Chart Test</h1>
-      <Line data={data} />
-    </Div>
+      <Line
+        data={data}
+        options={{
+          responsive: true,
+          plugins: {
+            zoom: {
+              pan: { enabled: true, mode: "x" },
+              zoom: {
+                mode: "x",
+                wheel: { enabled: true },
+              },
+            },
+          },
+          scales: {
+            xAxes: { grid: { color: "rgba(0, 0, 0, 0)" } },
+            yAxes: {
+              ticks: {
+                maxTicksLimit: 5,
+              },
+            },
+          },
+        }}
+      />
+    </Wrapper>
   );
 }
-const Div = styled.div`
-  width: 80rem;
-  height: 25rem;
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
 `;
 
 export default HumidityGraph;
