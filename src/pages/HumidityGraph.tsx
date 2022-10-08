@@ -1,6 +1,7 @@
 import Chart from "chart.js/auto";
 import { Line } from "react-chartjs-2";
 import { CategoryScale } from "chart.js";
+import * as Zoom from "chartjs-plugin-zoom";
 import styled from "styled-components";
 Chart.register(CategoryScale);
 
@@ -43,11 +44,41 @@ export default function HumidityGraph({ channelInfo, feedData }: dataProps) {
       },
     ],
   };
+  const options = {
+    plugins: {
+      zoom: {
+        pan: {
+          enabled: true,
+          mode: "x",
+        },
+        zoom: {
+          enabled: true,
+          drag: true,
+          mode: "xy",
+        },
+      },
+    },
+  };
   console.log(channelInfo);
   console.log(feedData);
   return (
     <Div>
-      <Line data={data} />
+      <Line
+        data={data}
+        options={{
+          responsive: true,
+          plugins: {
+            zoom: {
+              pan: { enabled: true, mode: "x" },
+              zoom: {
+                mode: "x",
+                wheel: { enabled: true },
+                pinch: { enabled: true },
+              },
+            },
+          },
+        }}
+      />
     </Div>
   );
 }

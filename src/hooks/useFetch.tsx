@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react';
-import fetchList from 'api/fetchList';
-import DataType from 'types';
+import { useState, useEffect } from "react";
+import fetchList from "api/fetchList";
+import DataType from "types";
 
 const initializeState: { results: DataType[]; loading: boolean } = {
   results: [],
@@ -13,19 +13,18 @@ const useFetch = () => {
   const response = async () => {
     try {
       const data = await fetchList();
-      setItems(({ results }) => ({
-        results: [...results, ...data],
-        loading: false,
-      }));
+      // setItems(({ results }) => ({
+      //   results: [...results, ...data],
+      //   loading: false,
+      // }));
+      console.log(data);
     } catch (error) {
       console.error(error);
     }
   };
 
   useEffect(() => {
-    return () => {
-      response();
-    };
+    response();
   }, []);
 
   return items;
