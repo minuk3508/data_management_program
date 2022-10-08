@@ -1,2 +1,1 @@
-export const LIST_URL =
-  'https://s3.us-west-2.amazonaws.com/secure.notion-static.com/a1db46b3-41b2-4a81-b7c6-5f85e7842cca/sensor-info-list.json?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20221006%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221006T101515Z&X-Amz-Expires=86400&X-Amz-Signature=1201c03e6b2bf515d647066dd27d9328f31725290353666766e73b84caac0817&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22sensor-info-list.json%22&x-id=GetObject';
+export const LOCAL = 'http://localhost:3000/data/List.json';
