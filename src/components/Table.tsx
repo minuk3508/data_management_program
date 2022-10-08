@@ -16,7 +16,7 @@ interface Props {
   results: DataType[];
 }
 
-const ReactTable = ({ results }: Props) => {
+const Table = ({ results }: Props) => {
   const [data] = useState([...results]);
   const columnHelper = createColumnHelper<DataType>();
   const columns = [
@@ -66,7 +66,7 @@ const ReactTable = ({ results }: Props) => {
     }),
   ];
 
-  const ReactTable = useReactTable({
+  const Table = useReactTable({
     data,
     columns,
     getCoreRowModel: getCoreRowModel(),
@@ -79,7 +79,7 @@ const ReactTable = ({ results }: Props) => {
     <Wapper>
       <table>
         <thead>
-          {ReactTable.getHeaderGroups().map((headerGroup) => (
+          {Table.getHeaderGroups().map((headerGroup) => (
             <tr key={headerGroup.id}>
               {headerGroup.headers.map((header) => (
                 <TableHeader header={header} key={header.id} />
@@ -88,7 +88,7 @@ const ReactTable = ({ results }: Props) => {
           ))}
         </thead>
         <tbody>
-          {ReactTable.getRowModel().rows.map((row) => (
+          {Table.getRowModel().rows.map((row) => (
             <tr key={row.id}>
               {row.getVisibleCells().map((cell) => (
                 <td key={cell.id}>
@@ -103,7 +103,7 @@ const ReactTable = ({ results }: Props) => {
   );
 };
 
-export default ReactTable;
+export default Table;
 
 const Wapper = styled.div`
   display: flex;
