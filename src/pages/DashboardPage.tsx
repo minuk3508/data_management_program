@@ -12,10 +12,10 @@ function DashboardPage() {
   return (
     <Template>
       <Container>
-        <GraphContainer>
-          <TestChart />
-        </GraphContainer>
         {/* <GraphContainer>
+          <TestChart />
+        </GraphContainer> */}
+        <GraphContainer>
           <DegreeGraph />
         </GraphContainer>
         <GraphContainer>
@@ -23,7 +23,7 @@ function DashboardPage() {
         </GraphContainer>
         <GraphContainer>
           <PressureGraph />
-        </GraphContainer> */}
+        </GraphContainer>
       </Container>
     </Template>
   );
