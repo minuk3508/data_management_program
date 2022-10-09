@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Template } from "Template/Template";
 import styled from "styled-components";
 import useFetchWeatherData from "hooks/useFetchWeatherData";
@@ -5,13 +6,27 @@ import DegreeGraph from "./DegreeGraph.pages";
 import HumidityGraph from "./HumidityGraph.pages";
 import PressureGraph from "./PressureGraph.pages";
 import CSVExportButton from "./CSVExportButton";
+import Calender from "./Calender";
+import CalenderButton from "./CalenderButton";
 function DashboardPage() {
   const weatherData = useFetchWeatherData();
-
+  const [selectedDay, setSelectedDay] = useState<Date | undefined>(new Date());
+  const [button, setbutton] = useState(false);
+  const dayData = selectedDay?.toLocaleString("sv") as string;
+  if (selectedDay) console.log(dayData);
   return (
     <Template>
       <Container>
-        <TopSectionContainer>캘린더 자리</TopSectionContainer>
+        {button && (
+          <Calender
+            selectedDay={selectedDay}
+            setSelectedDay={setSelectedDay}
+            setbutton={setbutton}
+          />
+        )}
+        <TopSectionContainer>
+          <CalenderButton dayData={dayData} setbutton={setbutton} />
+        </TopSectionContainer>
         <GraphSectionContainer>
           <GraphWrapper>
             <DegreeGraph />
@@ -47,7 +62,6 @@ const TopSectionContainer = styled.div`
   justify-content: center;
   width: 100%;
   height: 15%;
-  background-color: rgba(50, 168, 82, 0.5);
 `;
 
 const GraphSectionContainer = styled.div`
