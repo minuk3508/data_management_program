@@ -77,8 +77,8 @@ const Table = ({ results }: Props) => {
 
   return (
     <Wapper>
-      <table>
-        <thead>
+      <TableBox>
+        <Header>
           {Table.getHeaderGroups().map((headerGroup) => (
             <tr key={headerGroup.id}>
               {headerGroup.headers.map((header) => (
@@ -86,19 +86,26 @@ const Table = ({ results }: Props) => {
               ))}
             </tr>
           ))}
-        </thead>
-        <tbody>
+        </Header>
+        <Body>
           {Table.getRowModel().rows.map((row) => (
             <tr key={row.id}>
-              {row.getVisibleCells().map((cell) => (
-                <td key={cell.id}>
-                  {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                </td>
-              ))}
+              {row.getVisibleCells().map((cell) => {
+                return (
+                  <td
+                    key={cell.id}
+                    style={{
+                      color: row.original.shadow.batLvl <= 20 ? 'red' : 'black',
+                    }}
+                  >
+                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                  </td>
+                );
+              })}
             </tr>
           ))}
-        </tbody>
-      </table>
+        </Body>
+      </TableBox>
     </Wapper>
   );
 };
@@ -109,16 +116,51 @@ const Wapper = styled.div`
   display: flex;
   justify-content: center;
   text-align: center;
-  padding: 10px;
-
-  table {
-    border: 1px solid black;
-    tr {
-      :nth-child(even) {
-        background-color: rgba(232, 232, 232);
+  padding: 20px 50px;
+  @media ${({ theme }) => theme.device.tabletL} {
+    padding: 15px;
+  }
+`;
+const TableBox = styled.table`
+  border: 1.5px solid #75513989;
+  border-radius: 3px;
+  overflow: scroll;
+  display: inline-block;
+  box-shadow: 0 4px 5px rgba(0, 0, 0, 0.2);
+  tbody tr:hover {
+    background: #ddd;
+    font-weight: 600;
+  }
+`;
+const Header = styled.thead`
+  background-color: #f7e0d0;
+  tr {
+    th {
+      padding: 7px;
+      border-bottom: 1.5px solid #75513989;
+      @media ${({ theme }) => theme.device.tabletL} {
+        padding: 5px;
       }
-      td {
-        padding: 10px;
+    }
+  }
+`;
+const Body = styled.tbody`
+  overflow: scroll;
+  white-space: nowrap;
+  tr {
+    background-color: white;
+    border-top: 0.5px solid #75513989;
+    :nth-child(even) {
+      background-color: #f9f7f5;
+    }
+    td {
+      padding: 10px 5px;
+      @media ${({ theme }) => theme.device.tabletL} {
+        font-size: 14px;
+        padding: 10px 3px;
+      }
+      @media ${({ theme }) => theme.device.mobile} {
+        font-size: 12px;
       }
     }
   }
