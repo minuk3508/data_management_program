@@ -8,6 +8,7 @@ import zoomPlugin from "chartjs-plugin-zoom";
 import moment from "moment";
 import { useMemo } from "react";
 Chart.register(CategoryScale);
+Chart.register(zoomPlugin);
 
 function DegreeGraph() {
   const weatherData = useFetchWeatherData();
