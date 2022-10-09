@@ -1,77 +1,88 @@
-import { useEffect, useState } from "react";
 import { Template } from "Template/Template";
 import styled from "styled-components";
-import HumidityGraph from "./HumidityGraph";
-import Calender from "./Calender";
-import CalenderButton from "./CalenderButton";
-interface channelProps {
-  id: number;
-  name: string;
-  description: string;
-  latitude: string;
-  longitude: string;
-  field1: string;
-  field2: string;
-  field3: string;
-  created_at: string;
-  updated_at: string;
-  last_entry_id: number;
-}
-
-interface feedProps {
-  created_at: string;
-  entry_id: number;
-  field1: string;
-  field2: string;
-  field3: string;
-}
-
-interface dataProps {
-  channel: channelProps;
-  feeds: feedProps[];
-}
-
-export function DashboardPage() {
-  const [channelInfo, setChannelInfo] = useState<channelProps>();
-  const [feedData, setFeedData] = useState<feedProps[]>();
-  const [selectedDay, setSelectedDay] = useState<Date | undefined>(new Date());
-  const [button, setbutton] = useState(false);
-  const API_KEY = "6SKW0U97IPV2QQV9";
-  const CHAEENEL_ID = "1348864";
-  useEffect(() => {
-    (async () => {
-      const res = await fetch(
-        `https://api.thingspeak.com/channels/${CHAEENEL_ID}/feeds.json?api_key=${API_KEY}`
-      );
-      const json = await res.json();
-      setChannelInfo(json.channel);
-      setFeedData(json.feeds);
-      console.log(json);
-    })();
-  }, []);
-  console.log(channelInfo);
-  const dayData = selectedDay?.toLocaleString("sv") as string;
-  if (selectedDay) console.log(dayData);
+import useFetchWeatherData from "hooks/useFetchWeatherData";
+import DegreeGraph from "./DegreeGraph.pages";
+import HumidityGraph from "./HumidityGraph.pages";
+import PressureGraph from "./PressureGraph.pages";
+import CSVExportButton from "./CSVExportButton";
+function DashboardPage() {
+  const weatherData = useFetchWeatherData();
 
   return (
     <Template>
       <Container>
-        <CalenderButton dayData={dayData} setbutton={setbutton} />
-        {button && (
-          <Calender
-            selectedDay={selectedDay}
-            setSelectedDay={setSelectedDay}
-            setbutton={setbutton}
-          />
-        )}
-        <HumidityGraph channelInfo={channelInfo} feedData={feedData} />
+        <TopSectionContainer>캘린더 자리</TopSectionContainer>
+        <GraphSectionContainer>
+          <GraphWrapper>
+            <DegreeGraph />
+          </GraphWrapper>
+          <GraphWrapper>
+            <HumidityGraph />
+          </GraphWrapper>
+          <GraphWrapper>
+            <PressureGraph />
+          </GraphWrapper>
+        </GraphSectionContainer>
+        <BottomSectionContainer>
+          <CSVExportButton />
+        </BottomSectionContainer>
       </Container>
     </Template>
   );
 }
 const Container = styled.div`
-  display: flex;
-  position: relative;
+  @media ${({ theme }) => theme.device.tabletL} {
+    height: auto;
+  }
   width: 100%;
   height: 100%;
 `;
+const TopSectionContainer = styled.div`
+  @media ${({ theme }) => theme.device.tabletL} {
+    height: 5rem;
+  }
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 15%;
+  background-color: rgba(50, 168, 82, 0.5);
+`;
+
+const GraphSectionContainer = styled.div`
+  @media ${({ theme }) => theme.device.tabletL} {
+    flex-direction: column;
+    height: auto;
+    padding-top: 5%;
+  }
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 70%;
+`;
+const GraphWrapper = styled.div`
+  @media ${({ theme }) => theme.device.tabletL} {
+    width: 80%;
+    height: 60%;
+    margin: 3% 0%;
+  }
+  width: 28%;
+  height: 24%;
+  min-width: 21rem;
+  min-height: 18rem;
+  margin: 0% 3%;
+`;
+const BottomSectionContainer = styled.div`
+  @media ${({ theme }) => theme.device.tabletL} {
+    height: 5rem;
+  }
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 15%;
+`;
+
+export default DashboardPage;

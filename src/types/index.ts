@@ -1,3 +1,5 @@
+import { Header } from '@tanstack/react-table';
+
 export interface DataType {
   thingName: string;
   shadow: {
@@ -12,6 +14,15 @@ export interface DataType {
     rssi: number;
     fwVer: string;
     hwVer: number;
+    [key: string]: any;
   };
 }
-export default DataType;
+
+export interface CustomHeader {
+  header: Header<DataType, unknown>;
+}
+
+export interface CustomSorter {
+  width: number;
+  isSortable: boolean;
+}
