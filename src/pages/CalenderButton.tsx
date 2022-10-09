@@ -1,4 +1,5 @@
 import { Dispatch, SetStateAction } from "react";
+import { FcCalendar } from "react-icons/fc";
 import styled from "styled-components";
 
 interface DayProps {
@@ -15,12 +16,34 @@ export default function CalenderButton({ dayData, setbutton }: DayProps) {
     "일 ";
   return (
     <>
-      <CalenderButtonWrap>{day}</CalenderButtonWrap>
-      <Calender onClick={() => setbutton(true)}>버튼</Calender>
+      <CalenderButtonWrap onClick={() => setbutton(true)}>
+        {day}
+        <Calender>
+          <FcCalendar size="2x" />
+        </Calender>
+      </CalenderButtonWrap>
     </>
   );
 }
 
-const CalenderButtonWrap = styled.div``;
+const CalenderButtonWrap = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 15rem;
+  height: 5rem;
+  background-color: ${({ theme }) => theme.colors.gray};
+  border-radius: 1rem;
+  color: white;
+  font-size: 1.3rem;
+  font-weight: 600;
+  :hover {
+    cursor: pointer;
+    background-color: #383838;
+  }
+`;
 
-const Calender = styled.button``;
+const Calender = styled.div`
+  width: 3rem;
+  height: 5rem;
+`;

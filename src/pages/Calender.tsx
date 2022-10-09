@@ -39,10 +39,6 @@ const CalenderWrap = styled.div`
   background-color: rgba(0, 0, 0, 0.5);
 `;
 const DayPickerWrap = styled.div`
-  @media ${theme.device.mobile} {
-  }
-  @media ${theme.device.tablet} {
-  }
   @media ${theme.device.tabletL} {
     height: 60%;
   }
@@ -57,8 +53,8 @@ const DayPickerWrap = styled.div`
   &&& {
     .rdp {
       --rdp-cell-size: 42px;
-      --rdp-accent-color: #0000ff;
-      --rdp-background-color: #e7edff;
+      --rdp-accent-color: #4f4f4f;
+      --rdp-background-color: #b5b5b5;
       --rdp-accent-color-dark: #3003e1;
       --rdp-background-color-dark: #180270;
       --rdp-outline: 2px solid var(--rdp-accent-color); /* Outline border for focused elements */
