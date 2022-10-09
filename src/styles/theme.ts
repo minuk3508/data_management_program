@@ -1,14 +1,15 @@
-import { DefaultTheme } from 'styled-components';
+import { DefaultTheme } from "styled-components";
 
 const fontWeight = {
-  light: '300',
-  regular: '400',
-  regular_2: '500',
-  bold: '700',
-  black: '900',
+  light: "300",
+  regular: "400",
+  regular_2: "500",
+  bold: "700",
+  black: "900",
 };
 const colors = {
-  black: '#2D2D2D',
+  black: "#2D2D2D",
+  gray: "#4f4f4f",
 };
 const device = {
   mobileS: `only screen and (max-width: 290px)`,

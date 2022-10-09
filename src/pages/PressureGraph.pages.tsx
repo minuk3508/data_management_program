@@ -9,6 +9,7 @@ import moment from "moment";
 import { useMemo } from "react";
 
 Chart.register(CategoryScale);
+Chart.register(zoomPlugin);
 
 function PressureGraph() {
   const weatherData = useFetchWeatherData();
