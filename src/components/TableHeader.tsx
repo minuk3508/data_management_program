@@ -1,8 +1,8 @@
-import styled from 'styled-components';
-import { flexRender, SortDirection } from '@tanstack/react-table';
-import { useMemo } from 'react';
-import { FaSort, FaSortUp, FaSortDown } from 'react-icons/fa';
-import { CustomHeader, CustomSorter } from 'types';
+import styled from "styled-components";
+import { flexRender, SortDirection } from "@tanstack/react-table";
+import { useMemo } from "react";
+import { FaSort, FaSortUp, FaSortDown } from "react-icons/fa";
+import { CustomHeader, CustomSorter } from "types";
 
 function TableHeader({ header }: CustomHeader) {
   const sortedUniqueValues = useMemo(
@@ -14,7 +14,7 @@ function TableHeader({ header }: CustomHeader) {
   );
 
   const onFilterChange = (value: string) => {
-    if (value === 'null') {
+    if (value === "null") {
       header.column.setFilterValue(null);
     } else {
       header.column.setFilterValue(value);
@@ -47,7 +47,7 @@ function TableHeader({ header }: CustomHeader) {
             <select
               onChange={({ currentTarget: { value } }) => onFilterChange(value)}
             >
-              <option value='null'>All</option>
+              <option value="null">All</option>
               {sortedUniqueValues.map((value) => (
                 <option key={value}>{value}</option>
               ))}
@@ -60,20 +60,43 @@ function TableHeader({ header }: CustomHeader) {
 }
 
 const ThWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 4px;
+  background-color: aliceblue;
+  border-radius: 5px;
 `;
 const Sorter = styled.div<CustomSorter>`
   width: ${({ width }) => width};
-  cursor: ${({ isSortable }) => (isSortable ? 'pointer' : 'default')};
+  cursor: ${({ isSortable }) => (isSortable ? "pointer" : "default")};
+  background-color: rgba(0, 0, 0, 0.25);
+  border-radius: 5px;
+  box-shadow: 0 4px 5px rgba(0, 0, 0, 0.2);
+  color: whitesmoke;
+  font-size: 16px;
+  font-weight: 600;
+  display: flex;
+  justify-content: space-between;
+  padding: 8px;
+  @media ${({ theme }) => theme.device.tabletL} {
+    font-size: 14px;
+    padding: 5px;
+  }
+  @media ${({ theme }) => theme.device.mobile} {
+    font-size: 13px;
+  }
 `;
 const ColumnFilter = styled.div`
   select {
     border: none;
     background-color: transparent;
+    width: 100%;
+    padding: 5px;
+    color: rgba(0, 0, 0, 0.5);
+    @media ${({ theme }) => theme.device.tabletL} {
+      font-size: 13px;
+      padding: 3px;
+    }
+    @media ${({ theme }) => theme.device.mobile} {
+      font-size: 11px;
+    }
   }
 `;
 
