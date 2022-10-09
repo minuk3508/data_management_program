@@ -8,7 +8,6 @@ import zoomPlugin from "chartjs-plugin-zoom";
 import moment from "moment";
 import { useMemo } from "react";
 Chart.register(CategoryScale);
-Chart.register(zoomPlugin);
 
 function DegreeGraph() {
   const weatherData = useFetchWeatherData();
@@ -34,7 +33,6 @@ function DegreeGraph() {
       ),
     datasets: [
       {
-        label: "온도 그래프",
         data: weatherData?.feeds
           ?.filter(
             (feed) => moment(feed.created_at).format("DD") === defaultDate
@@ -48,7 +46,7 @@ function DegreeGraph() {
 
   return (
     <Wrapper>
-      <h1>Chart Test</h1>
+      <h1>Temperature</h1>
       <Line
         data={data}
         options={{
@@ -61,6 +59,7 @@ function DegreeGraph() {
                 wheel: { enabled: true },
               },
             },
+            legend: { display: false },
           },
           scales: {
             xAxes: { grid: { color: "rgba(0, 0, 0, 0)" } },
