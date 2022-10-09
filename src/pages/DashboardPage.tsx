@@ -3,7 +3,7 @@ import { Template } from "Template/Template";
 import styled from "styled-components";
 import HumidityGraph from "./HumidityGraph";
 import Calender from "./Calender";
-
+import CalenderButton from "./CalenderButton";
 interface channelProps {
   id: number;
   name: string;
@@ -34,6 +34,8 @@ interface dataProps {
 export function DashboardPage() {
   const [channelInfo, setChannelInfo] = useState<channelProps>();
   const [feedData, setFeedData] = useState<feedProps[]>();
+  const [selectedDay, setSelectedDay] = useState<Date | undefined>(new Date());
+  const [button, setbutton] = useState(false);
   const API_KEY = "6SKW0U97IPV2QQV9";
   const CHAEENEL_ID = "1348864";
   useEffect(() => {
@@ -48,20 +50,28 @@ export function DashboardPage() {
     })();
   }, []);
   console.log(channelInfo);
+  const dayData = selectedDay?.toLocaleString("sv") as string;
+  if (selectedDay) console.log(dayData);
+
   return (
     <Template>
       <Container>
-        {false ? (
-          <Calender />
-        ) : (
-          <HumidityGraph channelInfo={channelInfo} feedData={feedData} />
+        <CalenderButton dayData={dayData} setbutton={setbutton} />
+        {button && (
+          <Calender
+            selectedDay={selectedDay}
+            setSelectedDay={setSelectedDay}
+            setbutton={setbutton}
+          />
         )}
+        <HumidityGraph channelInfo={channelInfo} feedData={feedData} />
       </Container>
     </Template>
   );
 }
 const Container = styled.div`
   display: flex;
+  position: relative;
   width: 100%;
   height: 100%;
 `;
