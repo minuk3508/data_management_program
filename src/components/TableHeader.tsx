@@ -47,7 +47,7 @@ function TableHeader({ header }: CustomHeader) {
             <select
               onChange={({ currentTarget: { value } }) => onFilterChange(value)}
             >
-              <option value='null'>All</option>
+              <option value="null">All</option>
               {sortedUniqueValues.map((value) => (
                 <option key={value}>{value}</option>
               ))}
@@ -60,20 +60,43 @@ function TableHeader({ header }: CustomHeader) {
 }
 
 const ThWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 4px;
+  background-color: aliceblue;
+  border-radius: 5px;
 `;
 const Sorter = styled.div<CustomSorter>`
   width: ${({ width }) => width};
   cursor: ${({ isSortable }) => (isSortable ? 'pointer' : 'default')};
+  background-color: #be6a2e;
+  border-radius: 2px;
+  box-shadow: 0 4px 5px rgba(0, 0, 0, 0.2);
+  color: whitesmoke;
+  font-size: 16px;
+  font-weight: 600;
+  display: flex;
+  justify-content: space-between;
+  padding: 8px;
+  @media ${({ theme }) => theme.device.tabletL} {
+    font-size: 14px;
+    padding: 5px;
+  }
+  @media ${({ theme }) => theme.device.mobile} {
+    font-size: 13px;
+  }
 `;
 const ColumnFilter = styled.div`
   select {
     border: none;
     background-color: transparent;
+    width: 100%;
+    padding: 5px;
+    color: #be6a2e;
+    @media ${({ theme }) => theme.device.tabletL} {
+      font-size: 13px;
+      padding: 3px;
+    }
+    @media ${({ theme }) => theme.device.mobile} {
+      font-size: 11px;
+    }
   }
 `;
 
