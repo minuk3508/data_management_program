@@ -1,6 +1,8 @@
 import Chart from "chart.js/auto";
 import { Line } from "react-chartjs-2";
 import { CategoryScale } from "chart.js";
+import * as Zoom from "chartjs-plugin-zoom";
+import zoomPlugin from "chartjs-plugin-zoom";
 import styled from "styled-components";
 import useFetchWeatherData from "hooks/useFetchWeatherData";
 import moment from "moment";
@@ -31,28 +33,54 @@ function HumidityGraph() {
       ),
     datasets: [
       {
-        label: "습도 그래프",
         data: weatherData?.feeds
           ?.filter(
             (feed) => moment(feed.created_at).format("DD") === defaultDate
           )
           .map((i) => i.field2),
-        borderColor: "rgb(255, 99, 132)",
-        backgroundColor: "rgba(255, 99, 132, 0.5)",
+        borderColor: "rgb(73, 135, 216)",
+        backgroundColor: "rgba(99, 141, 255, 0.5)",
       },
     ],
   };
 
   return (
-    <Div>
-      <h1>Chart Test</h1>
-      <Line data={data} />
-    </Div>
+    <Wrapper>
+      <h1>Humidity</h1>
+      <Line
+        data={data}
+        options={{
+          responsive: true,
+          plugins: {
+            zoom: {
+              pan: { enabled: true, mode: "x" },
+              zoom: {
+                mode: "x",
+                wheel: { enabled: true },
+              },
+            },
+            legend: { display: false },
+          },
+          scales: {
+            xAxes: { grid: { color: "rgba(0, 0, 0, 0)" } },
+            yAxes: {
+              ticks: {
+                maxTicksLimit: 5,
+              },
+            },
+          },
+        }}
+      />
+    </Wrapper>
   );
 }
-const Div = styled.div`
-  width: 80rem;
-  height: 25rem;
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
 `;
 
 export default HumidityGraph;
