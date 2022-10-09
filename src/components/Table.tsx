@@ -19,6 +19,7 @@ interface Props {
 const Table = ({ results }: Props) => {
   const [data] = useState([...results]);
   const columnHelper = createColumnHelper<DataType>();
+
   const columns = [
     columnHelper.accessor("thingName", {
       header: "Sensor ID",
@@ -90,11 +91,18 @@ const Table = ({ results }: Props) => {
         <tbody>
           {Table.getRowModel().rows.map((row) => (
             <Row key={row.id}>
-              {row.getVisibleCells().map((cell) => (
-                <td key={cell.id}>
-                  {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                </td>
-              ))}
+              {row.getVisibleCells().map((cell) => {
+                return (
+                  <Cell
+                    key={cell.id}
+                    style={{
+                      color: row.original.shadow.batLvl <= 20 ? "red" : "black",
+                    }}
+                  >
+                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                  </Cell>
+                );
+              })}
             </Row>
           ))}
         </tbody>
@@ -129,3 +137,5 @@ const Row = styled.tr`
     background-color: rgba(0, 0, 0, 0.4);
   }
 `;
+
+const Cell = styled.td``;
