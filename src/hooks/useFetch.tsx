@@ -23,9 +23,7 @@ const useFetch = () => {
   }, []);
 
   useEffect(() => {
-    return () => {
-      response();
-    };
+    response();
   }, [response]);
 
   return items;
