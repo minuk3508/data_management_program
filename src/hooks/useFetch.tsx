@@ -1,6 +1,6 @@
-import { useState, useEffect } from "react";
-import fetchList from "api/fetchList";
-import DataType from "types";
+import { useState, useEffect, useCallback } from 'react';
+import fetchList from 'api/fetchList';
+import { DataType } from 'types';
 
 const initializeState: { results: DataType[]; loading: boolean } = {
   results: [],
@@ -10,22 +10,21 @@ const initializeState: { results: DataType[]; loading: boolean } = {
 const useFetch = () => {
   const [items, setItems] = useState(initializeState);
 
-  const response = async () => {
+  const response = useCallback(async () => {
     try {
       const data = await fetchList();
-      // setItems(({ results }) => ({
-      //   results: [...results, ...data],
-      //   loading: false,
-      // }));
-      console.log(data);
+      setItems(({ results }) => ({
+        results: [...results, ...data.data],
+        loading: false,
+      }));
     } catch (error) {
       console.error(error);
     }
-  };
+  }, []);
 
   useEffect(() => {
     response();
-  }, []);
+  }, [response]);
 
   return items;
 };
