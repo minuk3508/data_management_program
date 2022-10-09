@@ -4,6 +4,7 @@ import useFetchWeatherData from "hooks/useFetchWeatherData";
 import DegreeGraph from "./DegreeGraph.pages";
 import HumidityGraph from "./HumidityGraph.pages";
 import PressureGraph from "./PressureGraph.pages";
+import CSVExportButton from "./CSVExportButton";
 function DashboardPage() {
   const weatherData = useFetchWeatherData();
 
@@ -22,7 +23,9 @@ function DashboardPage() {
             <PressureGraph />
           </GraphWrapper>
         </GraphSectionContainer>
-        <BottomSectionContainer>바텀</BottomSectionContainer>
+        <BottomSectionContainer>
+          <CSVExportButton />
+        </BottomSectionContainer>
       </Container>
     </Template>
   );
@@ -80,7 +83,6 @@ const BottomSectionContainer = styled.div`
   justify-content: center;
   width: 100%;
   height: 15%;
-  background-color: rgba(255, 183, 0, 0.5);
 `;
 
 export default DashboardPage;
