@@ -1,8 +1,8 @@
-import styled from 'styled-components';
-import { flexRender, SortDirection } from '@tanstack/react-table';
-import { useMemo } from 'react';
-import { FaSort, FaSortUp, FaSortDown } from 'react-icons/fa';
-import { CustomHeader, CustomSorter } from 'types';
+import styled from "styled-components";
+import { flexRender, SortDirection } from "@tanstack/react-table";
+import { useMemo } from "react";
+import { FaSort, FaSortUp, FaSortDown } from "react-icons/fa";
+import { CustomHeader, CustomSorter } from "types";
 
 function TableHeader({ header }: CustomHeader) {
   const sortedUniqueValues = useMemo(
@@ -14,7 +14,7 @@ function TableHeader({ header }: CustomHeader) {
   );
 
   const onFilterChange = (value: string) => {
-    if (value === 'null') {
+    if (value === "null") {
       header.column.setFilterValue(null);
     } else {
       header.column.setFilterValue(value);
@@ -65,9 +65,9 @@ const ThWrapper = styled.div`
 `;
 const Sorter = styled.div<CustomSorter>`
   width: ${({ width }) => width};
-  cursor: ${({ isSortable }) => (isSortable ? 'pointer' : 'default')};
-  background-color: #be6a2e;
-  border-radius: 2px;
+  cursor: ${({ isSortable }) => (isSortable ? "pointer" : "default")};
+  background-color: rgba(0, 0, 0, 0.25);
+  border-radius: 5px;
   box-shadow: 0 4px 5px rgba(0, 0, 0, 0.2);
   color: whitesmoke;
   font-size: 16px;
@@ -89,7 +89,7 @@ const ColumnFilter = styled.div`
     background-color: transparent;
     width: 100%;
     padding: 5px;
-    color: #be6a2e;
+    color: rgba(0, 0, 0, 0.5);
     @media ${({ theme }) => theme.device.tabletL} {
       font-size: 13px;
       padding: 3px;

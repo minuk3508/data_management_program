@@ -96,7 +96,7 @@ const Table = ({ results }: Props) => {
                   <td
                     key={cell.id}
                     style={{
-                      color: row.original.shadow.batLvl <= 20 ? 'red' : 'black',
+                      color: row.original.shadow.batLvl <= 20 ? "red" : "black",
                     }}
                   >
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
@@ -123,22 +123,22 @@ const Wapper = styled.div`
   }
 `;
 const TableBox = styled.table`
-  border: 1.5px solid #75513989;
+  border: 1.5px solid rgba(0, 0, 0, 0.3);
   border-radius: 3px;
   overflow: scroll;
   display: inline-block;
   box-shadow: 0 4px 5px rgba(0, 0, 0, 0.2);
   tbody tr:hover {
-    background: #ddd;
+    background: rgba(0, 0, 0, 0.3);
     font-weight: 600;
   }
 `;
 const Header = styled.thead`
-  background-color: #f7e0d0;
+  background-color: rgba(0, 0, 0, 0.15);
   tr {
     th {
       padding: 7px;
-      border-bottom: 1.5px solid #75513989;
+      border-bottom: 1.5px solid rgba(0, 0, 0, 0.3);
       @media ${({ theme }) => theme.device.tabletL} {
         padding: 5px;
       }
@@ -150,9 +150,9 @@ const Body = styled.tbody`
   white-space: nowrap;
   tr {
     background-color: white;
-    border-top: 0.5px solid #75513989;
+    border-top: 0.5px solid rgba(0, 0, 0, 0.3);
     :nth-child(even) {
-      background-color: #f9f7f5;
+      background-color: rgba(0, 0, 0, 0.05);
     }
     td {
       padding: 10px 5px;
@@ -166,11 +166,3 @@ const Body = styled.tbody`
     }
   }
 `;
-
-const Row = styled.tr`
-  :hover {
-    background-color: rgba(0, 0, 0, 0.4);
-  }
-`;
-
-const Cell = styled.td``;
