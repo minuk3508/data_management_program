@@ -1,4 +1,5 @@
 import { useMemo, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Template } from "Template/Template";
 import styled from "styled-components";
 import useFetchWeatherData, { dataProps } from "hooks/useFetchWeatherData";
@@ -21,6 +22,7 @@ function DashboardPage() {
   const [button, setbutton] = useState(false);
   const dayData = selectedDay?.toLocaleString("sv") as string;
   const formattedDayData = moment(dayData).format("DD");
+  const navigate = useNavigate();
 
   const defaultDate = useMemo(() => {
     return moment(
@@ -44,6 +46,9 @@ function DashboardPage() {
   const onDragEnd = (result: any) => {
     console.log(result);
   };
+  const goToDataList = () => {
+    navigate("/");
+  };
   return (
     <Template>
       {button && (
@@ -54,6 +59,9 @@ function DashboardPage() {
         />
       )}
       <Container>
+        <GoDashboardBtn onClick={goToDataList}>
+          <BtnText>DataList</BtnText>
+        </GoDashboardBtn>
         <TopSectionContainer>
           <CalenderButton dayData={dayData} setbutton={setbutton} date={date} />
           <DateAlert>
@@ -156,7 +164,6 @@ const GraphWrapper = styled.div`
   min-width: 21rem;
   min-height: 18rem;
   margin: 0% 3%;
-  border: 1px solid black;
   padding: 20px;
 `;
 const BottomSectionContainer = styled.div`
@@ -173,5 +180,29 @@ const DateAlert = styled.div`
   strong {
     color: red;
   }
+`;
+const GoDashboardBtn = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80px;
+  margin: 20px 0 0 50px;
+  background-color: rgba(0, 0, 0, 0.1);
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px grey;
+
+  :hover {
+    cursor: pointer;
+  }
+
+  @media ${({ theme }) => theme.device.tabletL} {
+    margin-left: 15px;
+  }
+`;
+
+const BtnText = styled.span`
+  text-align: center;
+  padding: 5px 0;
 `;
 export default DashboardPage;

@@ -6,12 +6,7 @@ interface childProps {
 }
 
 export function Template({ children }: childProps) {
-  return (
-    <Container>
-      <Header>DATA</Header>
-      {children}
-    </Container>
-  );
+  return <Container>{children}</Container>;
 }
 
 const Container = styled.div`

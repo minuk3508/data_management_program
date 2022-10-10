@@ -10,7 +10,7 @@ interface DayProps {
 }
 export default function CalenderButton({ dayData, setbutton, date }: DayProps) {
   const day =
-    dayData.slice(0, 4) + "년 " + dayData.slice(5, 7) + "월 " + date + "일 ";
+    dayData?.slice(0, 4) + "년 " + dayData?.slice(5, 7) + "월 " + date + "일 ";
   return (
     <>
       <CalenderButtonWrap onClick={() => setbutton(true)}>
@@ -44,7 +44,6 @@ const CalenderButtonWrap = styled.div`
     cursor: pointer;
     background-color: #383838;
   }
-
 `;
 
 const Calender = styled.div`
