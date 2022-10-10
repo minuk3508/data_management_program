@@ -34,10 +34,23 @@
 
 #### 각각의 열에 대해서 필터링<br/>
 
-- #### (제목입력)<br/>
+- #### 드롭다운 방식으로 모든 값에 대해 필터링<br/>
+  react-table 라이브러리의 필터링 관련 함수들을 import하여 필터링 기능을 구현하였습니다.<br/>
+  각 열이 필터링이 가능한지 아닌지 여부를 판단하기 위해 getCanFilter를 사용하여, 필터링이 되지 않는 열에는 드롭다운이 보이지 않도록 설정하였습니다. 
 
 ```js
-//코드
+        <ColumnFilter>
+          {header.column.getCanFilter() ? (
+            <select
+              onChange={({ currentTarget: { value } }) => onFilterChange(value)}
+            >
+              <option value="null">All</option>
+              {sortedUniqueValues.map((value) => (
+                <option key={value}>{value}</option>
+              ))}
+            </select>
+          ) : null}
+        </ColumnFilter>
 ```
 
 
