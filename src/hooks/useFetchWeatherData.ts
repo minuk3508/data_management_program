@@ -23,7 +23,7 @@ interface feedProps {
   field3: string;
 }
 
-interface dataProps {
+export interface dataProps {
   channel: channelProps;
   feeds: feedProps[];
 }
