@@ -16,14 +16,14 @@ function DashboardPage() {
   if (selectedDay) console.log(dayData);
   return (
     <Template>
+      {button && (
+        <Calender
+          selectedDay={selectedDay}
+          setSelectedDay={setSelectedDay}
+          setbutton={setbutton}
+        />
+      )}
       <Container>
-        {button && (
-          <Calender
-            selectedDay={selectedDay}
-            setSelectedDay={setSelectedDay}
-            setbutton={setbutton}
-          />
-        )}
         <TopSectionContainer>
           <CalenderButton dayData={dayData} setbutton={setbutton} />
         </TopSectionContainer>

@@ -29,18 +29,24 @@ export default function Calender({
 }
 const CalenderWrap = styled.div`
   display: flex;
-  position: absolute;
+  position: fixed;
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: 100vh;
+  height: 100%;
   top: 0;
   left: 0;
   background-color: rgba(0, 0, 0, 0.5);
 `;
 const DayPickerWrap = styled.div`
-  @media ${theme.device.tabletL} {
+  @media only screen and (width: 1024px) {
     height: 60%;
+  }
+  @media only screen and (width: 820px) {
+    height: 32%;
+  }
+  @media only screen and (width: 768px) {
+    height: 35%;
   }
   display: flex;
   position: relative;

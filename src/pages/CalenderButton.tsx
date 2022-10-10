@@ -1,5 +1,6 @@
 import { Dispatch, SetStateAction } from "react";
 import { FcCalendar } from "react-icons/fc";
+import theme from "../styles/theme";
 import styled from "styled-components";
 
 interface DayProps {
@@ -27,6 +28,10 @@ export default function CalenderButton({ dayData, setbutton }: DayProps) {
 }
 
 const CalenderButtonWrap = styled.div`
+  @media ${theme.device.tabletL} {
+    color: ${({ theme }) => theme.colors.black};
+    background-color: #ffff;
+  }
   display: flex;
   align-items: center;
   justify-content: center;
@@ -37,10 +42,6 @@ const CalenderButtonWrap = styled.div`
   color: white;
   font-size: 1.3rem;
   font-weight: 600;
-  :hover {
-    cursor: pointer;
-    background-color: #383838;
-  }
 `;
 
 const Calender = styled.div`
