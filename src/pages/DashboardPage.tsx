@@ -10,7 +10,6 @@ import CSVExportButton from "./CSVExportButton";
 import Calender from "./Calender";
 import CalenderButton from "./CalenderButton";
 import moment from "moment";
-import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 
 export interface dateProps {
   date: string;
@@ -43,9 +42,6 @@ function DashboardPage() {
       : defaultDate;
   }, [availableDates, formattedDayData, defaultDate]);
 
-  const onDragEnd = (result: any) => {
-    console.log(result);
-  };
   const goToDataList = () => {
     navigate("/");
   };
@@ -69,51 +65,17 @@ function DashboardPage() {
             일 입니다.
           </DateAlert>
         </TopSectionContainer>
-        <DragDropContext onDragEnd={onDragEnd}>
-          <Droppable droppableId="1">
-            {(props) => (
-              <GraphSectionContainer
-                {...props.droppableProps}
-                ref={props.innerRef}
-              >
-                <Draggable draggableId="degree" index={0}>
-                  {(provided) => (
-                    <GraphWrapper
-                      {...provided.dragHandleProps}
-                      {...provided.draggableProps}
-                      ref={provided.innerRef}
-                    >
-                      <DegreeGraph date={date} weatherData={weatherData} />
-                    </GraphWrapper>
-                  )}
-                </Draggable>
-                <Draggable draggableId="humidity" index={1}>
-                  {(provided) => (
-                    <GraphWrapper
-                      {...provided.dragHandleProps}
-                      {...provided.draggableProps}
-                      ref={provided.innerRef}
-                    >
-                      <HumidityGraph date={date} weatherData={weatherData} />
-                    </GraphWrapper>
-                  )}
-                </Draggable>
-                <Draggable draggableId="pressure" index={2}>
-                  {(provided) => (
-                    <GraphWrapper
-                      {...provided.dragHandleProps}
-                      {...provided.draggableProps}
-                      ref={provided.innerRef}
-                    >
-                      <PressureGraph date={date} weatherData={weatherData} />
-                    </GraphWrapper>
-                  )}
-                </Draggable>
-                {props.placeholder}
-              </GraphSectionContainer>
-            )}
-          </Droppable>
-        </DragDropContext>
+        <GraphSectionContainer>
+          <GraphWrapper>
+            <DegreeGraph date={date} weatherData={weatherData} />
+          </GraphWrapper>
+          <GraphWrapper>
+            <HumidityGraph date={date} weatherData={weatherData} />
+          </GraphWrapper>
+          <GraphWrapper>
+            <PressureGraph date={date} weatherData={weatherData} />
+          </GraphWrapper>
+        </GraphSectionContainer>
         <BottomSectionContainer>
           <CSVExportButton />
         </BottomSectionContainer>

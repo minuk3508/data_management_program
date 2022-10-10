@@ -1,8 +1,8 @@
-import React, { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction } from "react";
 import { DayPicker } from "react-day-picker";
 import "react-day-picker/dist/style.css";
 import styled from "styled-components";
-import theme from "../styles/theme";
+
 interface DayProps {
   selectedDay: Date | undefined;
   setSelectedDay: Dispatch<SetStateAction<Date | undefined>>;

@@ -1,7 +1,6 @@
 import Chart from "chart.js/auto";
 import { Line } from "react-chartjs-2";
 import { CategoryScale } from "chart.js";
-import * as Zoom from "chartjs-plugin-zoom";
 import zoomPlugin from "chartjs-plugin-zoom";
 import styled from "styled-components";
 import moment from "moment";
