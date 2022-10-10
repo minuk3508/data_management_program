@@ -46,14 +46,14 @@ function DashboardPage() {
   };
   return (
     <Template>
+      {button && (
+        <Calender
+          selectedDay={selectedDay}
+          setSelectedDay={setSelectedDay}
+          setbutton={setbutton}
+        />
+      )}
       <Container>
-        {button && (
-          <Calender
-            selectedDay={selectedDay}
-            setSelectedDay={setSelectedDay}
-            setbutton={setbutton}
-          />
-        )}
         <TopSectionContainer>
           <CalenderButton dayData={dayData} setbutton={setbutton} date={date} />
           <DateAlert>
