@@ -1,9 +1,9 @@
 import axios from 'axios';
-import { LOCAL } from './utils';
+import { URL } from './utils';
 
 const fetchList = async () => {
   try {
-    const { data } = await axios.get(LOCAL);
+    const { data } = await axios.get(URL);
     if (data) {
       return data;
     }
