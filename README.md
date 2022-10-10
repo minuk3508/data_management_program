@@ -96,11 +96,23 @@ const Sorter = styled.div<CustomSorter>`
   &nbsp;&nbsp; 제시된 API는 총 100개의 배열로 데이터를 제공함으로써 많아야 이틀치 분량의 데이터만 제공해줍니다. 24시간을 온전히 가지고 있지 않는 경우도 있어서 따로 데이터 가공을 거쳤습니다.
 
 ```js
+const defaultDate = useMemo(() => {
+    return moment(
+      weatherData?.feeds.slice(-1)[0].created_at.slice(0, -1)
+    ).format("DD");
+  }, [weatherData]);
 
+  const availableDates = useMemo(() => {
+    const result = weatherData?.feeds.map((feed) =>
+      moment(feed.created_at.slice(0, -1)).format("DD")
+    );
+    return [...new Set(result)];
+  }, [weatherData]);
 ```
-
+즉, 사용자는 이틀치 분량의 데이터만 확인할 수 있으므로 사용자가 달력UI에서 날짜를 클릭했을 때, 사용자가 선택한 날짜가 사용가능한 날짜인지 판별하는 로직이 필요했습니다.
+위의 코드의 avaliableDates는 사용자가 선택가능한 날짜를 담은 배열입니다.<br />
+사용자가 선택한 날짜가 avaliableDates의 element 중 하나라면 해당 날짜를 보여주고, 그렇지 않다면 defaultDate를 보여주도록 설계했습니다.
 <br/>
-
 #### 데이터를 csv로 export<br/>
 
 - #### csv데이터 다운로드 관련 코드 <br/>
