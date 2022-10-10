@@ -71,6 +71,18 @@ const Sorter = styled.div<CustomSorter>`
 ```
 
 <br/>
+
+#### 반응형 페이지로 구현<br/>
+
+- #### 다양한 디바이스의 다양한 화면 크기에 유연하게 작동할 수 있도록 반응형으로 구현<br/>
+  media queries를 사용하여 반응형 페이지를 구현하였습니다.<br/>
+  ``` overflow: scroll``` 을 사용하여 스크롤기능으로 mobile, tablet, desktop 등 에서 사용가능한 반응형 페이지로 구현하였습니다.<br/>  
+
+  예시) tablet 화면  
+  <img width="300" height="400" alt="반응형" src="https://user-images.githubusercontent.com/100933263/194791619-f9496775-54da-4565-a9ba-df6fe8f4dd13.gif">
+
+
+<br/>
 <br/>
 <br/>
 
