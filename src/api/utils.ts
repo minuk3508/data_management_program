@@ -1,2 +1,1 @@
-export const URL =
-  'https://s3.us-west-2.amazonaws.com/secure.notion-static.com/a1db46b3-41b2-4a81-b7c6-5f85e7842cca/sensor-info-list.json?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20221010%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221010T004738Z&X-Amz-Expires=86400&X-Amz-Signature=af901e4e4a9fe4055037232c93ede04fa9f6cde71ad62d2918388975d9bc4079&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22sensor-info-list.json%22&x-id=GetObject';
+export const URL = '/data/data.json';

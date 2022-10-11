@@ -53,6 +53,7 @@
         "remainData": 10
       }
     },
+
     {
       "thingName": "FHL-100079",
       "shadow": {
@@ -101,6 +102,7 @@
         "remainData": 11
       }
     },
+
     {
       "thingName": "FHL-100204",
       "shadow": {
@@ -149,6 +151,7 @@
         "remainData": 10
       }
     },
+
     {
       "thingName": "FHL-100185",
       "shadow": {
@@ -197,6 +200,7 @@
         "remainData": 10
       }
     },
+
     {
       "thingName": "FHL-100210",
       "shadow": {
@@ -245,6 +249,7 @@
         "remainData": 12
       }
     },
+
     {
       "thingName": "FHL-100219",
       "shadow": {
@@ -1039,8 +1044,8 @@
         "hwVer": "",
         "fwVer": "",
         "batLvl": 0,
-        "connAt": "1900-01-00 00:00:00",
-        "disconnAt": "1900-01-00 00:00:00",
+        "connAt": "1900-01-01 0:00:00",
+        "disconnAt": "1900-01-01 00:00:00",
         "disconnReason": 62,
         "rawSentCnt": 0,
         "connGW": "GW-999997",

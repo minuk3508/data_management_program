@@ -14,7 +14,7 @@ const useFetch = () => {
     try {
       const data = await fetchList();
       setItems(({ results }) => ({
-        results: [...results, ...data],
+        results: [...results, ...data.data],
         loading: false,
       }));
     } catch (error) {
